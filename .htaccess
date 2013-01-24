@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^image-server/v1/(?:shops/([0-9]*)/)?products/([0-9]*)/views/([0-9]*)\.?(?:png|jpe?g|gif)?$ /createSexyImage.php?shopId=$1&productId=$2&view=$3 [NC,QSA,L]
+
+</IfModule>
+
