@@ -10,8 +10,10 @@ Install
 - Create a file called apisettings.php
 - Set the following variables
 
+```
     $s3awsAccessKey = "";
     $s3awsSecretKey = "";
     $s3bucket = "";
   
     $tinyPngApiKey = "";
+```
