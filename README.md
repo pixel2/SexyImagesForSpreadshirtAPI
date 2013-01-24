@@ -11,9 +11,9 @@ Install
 - Set the following variables
 
 ```
-    $s3awsAccessKey = "";
-    $s3awsSecretKey = "";
-    $s3bucket = "";
-  
-    $tinyPngApiKey = "";
+$s3awsAccessKey = "";
+$s3awsSecretKey = "";
+$s3bucket = "";
+
+$tinyPngApiKey = "";
 ```
