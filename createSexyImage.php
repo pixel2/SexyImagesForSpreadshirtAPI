@@ -33,12 +33,18 @@ try
     $i->cleanup($downloadedImagePath, $sexyImagePath, $tinyImagePath);
     
     if ($saved)
+    {
+      header("HTTP/1.1 301 Moved Permanently");
       header("Location: http://". $s3bucket ."/". str_replace("%2F","/",urlencode($s->getS3ImagePath())));
+    }
     else
+    {
       throw new HttpException(500, "Unkown error");
+    }
   }
   else
   {
+    header("HTTP/1.1 301 Moved Permanently");
     header("Location: http://". $s3bucket ."/". str_replace("%2F","/",urlencode($s->getS3ImagePath())));
   }
 }
