@@ -8,16 +8,14 @@ class TinyPngApi
     global $tinyPngApiKey;
     $curl = curl_init();
     
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => "http://api.tinypng.org/api/shrink",
-      CURLOPT_USERPWD => "api:" . $tinyPngApiKey,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_POST           => true,
-      CURLOPT_BINARYTRANSFER => true,
-      CURLOPT_POSTFIELDS => file_get_contents($image)));
+    curl_setopt($curl, CURLOPT_URL, "http://api.tinypng.org/api/shrink");
+    curl_setopt($curl, CURLOPT_USERPWD, "api:" . $tinyPngApiKey);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, file_get_contents($image));
       
-    $data = curl_exec($curl);//get curl response
     $tmpImagePath = sprintf("pictures/tmp/%s-tiny.png", time() * rand(2,10));
     $result = curl_exec($curl);
     $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -38,11 +36,10 @@ class TinyPngApi
     global $tinyPngApiKey;
     $curl = curl_init();
     
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => $url,
-      CURLOPT_USERPWD => "api:" . $tinyPngApiKey,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_RETURNTRANSFER => true));
+    curl_setopt($curl, URLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_USERPWD, "api:" . $tinyPngApiKey);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     
     $result = curl_exec($curl);
     $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);

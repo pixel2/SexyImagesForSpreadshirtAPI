@@ -174,10 +174,9 @@ class SpreadShirtApi
       $this->getSetting("productId"), $this->locale);
     
     $curl = curl_init();
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => $productInfoUri,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_RETURNTRANSFER => true));
+    curl_setopt($curl, CURLOPT_URL, $productInfoUri);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     
     if (($result = curl_exec($curl)))
     { 
@@ -222,11 +221,11 @@ class SpreadShirtApi
     $tmpImagePath = sprintf("pictures/tmp/%s-original.png", time() * rand(2,10));
     
     $curl = curl_init();
-    curl_setopt_array($curl, array(
-      CURLOPT_URL => $productImageUri,
-      CURLOPT_FAILONERROR => true,
-      CURLOPT_FOLLOWLOCATION => true,
-      CURLOPT_RETURNTRANSFER => true));
+    curl_setopt($curl, CURLOPT_URL, $productImageUri);
+    curl_setopt($curl, CURLOPT_FAILONERROR, true);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    
     if (($result = curl_exec($curl)))
     { 
       $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
