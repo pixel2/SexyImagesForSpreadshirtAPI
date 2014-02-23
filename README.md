@@ -7,13 +7,12 @@ You will need an Amazon S3 account for file storage and API access to tinypng.or
 
 Install
 -------
-- Create a file called apisettings.php
-- Set the following variables
+- Make sure to set the following enviroment variables
 
 ```
-$s3awsAccessKey = "";
-$s3awsSecretKey = "";
-$s3bucket = "";
+s3awsAccessKey = "...";
+s3awsSecretKey = "...";
+s3bucket = "...";
 
-$tinyPngApiKey = "";
+tinyPngApiKey = "...";
 ```
