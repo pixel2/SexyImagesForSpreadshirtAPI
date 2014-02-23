@@ -1,5 +1,4 @@
 <?php
-require_once("apisettings.php");
 require("S3.php");
 
 class SpreadShirtProductImage
@@ -9,7 +8,9 @@ class SpreadShirtProductImage
   
   public function __construct()
   {
-    global $s3awsAccessKey, $s3awsSecretKey;
+    $s3awsAccessKey = getenv("s3awsAccessKey");
+    $s3awsSecretKey = getenv("s3awsSecretKey");
+
     $this->s3 = new S3($s3awsAccessKey, $s3awsSecretKey);
     $this->s3->setEndpoint("s3-eu-west-1.amazonaws.com");
     
@@ -20,7 +21,7 @@ class SpreadShirtProductImage
   }
   
   public function imageExists($s3path) {
-    global $s3bucket;
+    $s3bucket = getenv("s3bucket");
     if (!$this->forceRefresh && ($info = $this->s3->getObjectInfo($s3bucket , $s3path)) !== false)
       return true;
     
@@ -29,7 +30,7 @@ class SpreadShirtProductImage
   
   public function saveImage($imagePath, $s3path) 
   {
-    global $s3bucket;
+    $s3bucket = getenv("s3bucket");
     $input = $this->s3->inputFile($imagePath);
     if ($this->s3->putObject(
       $input,

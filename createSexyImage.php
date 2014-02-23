@@ -1,14 +1,16 @@
 <?php
+
 require("spreadshirtapi.php");
 require("spreadshirtproductimage.php");
 require("tinypngapi.php");
 
-$s = new SpreadShirtApi;
+$s = new SpreadShirtApi();
+$s3bucket = getenv("s3bucket");
 
 try
 { 
   $s->validate();
-  $i = new SpreadShirtProductImage;
+  $i = new SpreadShirtProductImage();
   if (!$i->imageExists($s->getS3ImagePath()))
   {
     if (!$s->isSettingUserDefined("appearanceId") &&
@@ -31,7 +33,7 @@ try
     $tinyImagePath = $t->getTinyPng($sexyImagePath);
     $saved = $i->saveImage($tinyImagePath, $s->getS3ImagePath());
     $i->cleanup($downloadedImagePath, $sexyImagePath, $tinyImagePath);
-    
+
     if ($saved)
     {
       header("HTTP/1.1 301 Moved Permanently");
