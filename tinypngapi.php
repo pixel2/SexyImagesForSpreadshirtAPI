@@ -32,13 +32,11 @@ class TinyPngApi
     curl_setopt_array($curl, array(
         CURLOPT_URL => "https://api.tinypng.com/shrink",
         CURLOPT_USERPWD => "api:" . $tinyPngApiKey,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POSTFIELDS => file_get_contents($image),
         CURLOPT_BINARYTRANSFER => true,
-        CURLOPT_SSL_VERIFYPEER => true,
-        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HEADER => true,
-        CURLOPT_POSTFIELDS => file_get_contents($image)));
+        CURLOPT_SSL_VERIFYPEER => true));
 
     $tmpImagePath = sprintf("pictures/tmp/%s-tiny.png", time() * rand(2,10));
 
